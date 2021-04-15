@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sh_game</groupId>
+    <artifactId>game-metrics</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1</version>
+    <modules>
+        <module>metrics-core</module>
+        <module>metrics-prometheus</module>
+        <module>metrics-demo</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <!-- nexus 发布地址 -->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://192.168.5.83:8081/repository/fantasy_release/</url>
+        </repository>
+
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+<!--                    <skip>true</skip>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
