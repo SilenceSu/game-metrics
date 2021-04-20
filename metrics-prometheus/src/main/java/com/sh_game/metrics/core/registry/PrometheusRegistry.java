@@ -13,7 +13,6 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.Map;
 
-import static com.sh_game.metrics.core.registry.Configs.PrometheusPort;
 
 /**
  * 基于普罗米修斯的实现
@@ -34,25 +33,9 @@ public class PrometheusRegistry implements GameMetricsRegistry {
     @Override
     public void init(ResourceConfig resourceConfig) {
 
-        //默认断开
-        Integer port = null;
+        int port = getPort(resourceConfig);
+        String url = getUrl(resourceConfig);
 
-        Map<String, String> configDatas = resourceConfig.getAll();
-
-
-        String configPort = configDatas.get(PrometheusPort);
-        if (Strings.isNullOrEmpty(configPort)) {
-            port = DefaultPrometheus.metrics_prot;
-            resourceConfig.resetConfig(PrometheusPort, String.valueOf(port));//重新回写到配置
-        }else{
-            port = Integer.parseInt(configPort);
-        }
-
-
-        String url = configDatas.get(Configs.PrometheusUrl);
-        if (Strings.isNullOrEmpty(url)) {
-            url = DefaultPrometheus.metrics_Url;
-        }
 
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -67,6 +50,31 @@ public class PrometheusRegistry implements GameMetricsRegistry {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    private int getPort(ResourceConfig resourceConfig) {
+        Map<String, String> configDatas = resourceConfig.getAll();
+        String configPort = configDatas.get(Configs.PrometheusPort);
+
+        if (Strings.isNullOrEmpty(configPort)) {
+            configPort = (System.getProperty(Configs.PrometheusPort, String.valueOf(DefaultPrometheus.metrics_prot)));
+            resourceConfig.resetConfig(Configs.PrometheusPort, configPort);//重新回写到配置
+        }
+        return Integer.parseInt(configPort);
+    }
+
+    private String getUrl(ResourceConfig resourceConfig) {
+        Map<String, String> configDatas = resourceConfig.getAll();
+
+        //读取url配置
+        String url = configDatas.get(Configs.PrometheusUrl);
+        if (Strings.isNullOrEmpty(url)) {
+            url = DefaultPrometheus.metrics_Url;
+            resourceConfig.resetConfig(Configs.PrometheusUrl, url);//重新回写到配置
+        }
+
+        return url;
     }
 
 

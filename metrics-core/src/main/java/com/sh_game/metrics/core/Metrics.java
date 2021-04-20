@@ -24,7 +24,7 @@ public class Metrics {
     static {
 
         /**
-         * 查找
+         * 查找实现类
          */
         ServiceLoader<GameMetricsRegistry> registries = ServiceLoader.load(GameMetricsRegistry.class);
 
@@ -39,6 +39,13 @@ public class Metrics {
         }
 
 
+        /**
+         * 读取配置
+         * 1、先从文件获取，
+         * 2、文件没有的话，传入空配置，
+         * 空配置：实现类对于空配置一般建议先-D参数获取，然后在使用默认参数,
+         * 使用之后，建议赋值，用于其他组件获取当前使用配置
+         */
         ResourceConfig config = null;
         try {
             config = ResourceConfig.getOrNull(MetricsConstants.CONFIG_FILE);
