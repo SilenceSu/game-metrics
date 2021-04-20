@@ -3,7 +3,7 @@ package com.sh_game.metrics.core;
 import com.sh_game.metrics.core.registry.SimpleGameRegistry;
 import io.github.mweirauch.micrometer.jvm.extras.ProcessMemoryMetrics;
 import io.github.mweirauch.micrometer.jvm.extras.ProcessThreadMetrics;
-import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.*;
 import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics;
 import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
 import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics;
@@ -81,4 +81,42 @@ public class Metrics {
     public static ResourceConfig getResourceConfig() {
         return resourceConfig;
     }
+
+
+    /***
+     * 剂量计包装类
+     */
+
+    public Counter counter(String name, Iterable<Tag> tags) {
+        return INSTANCE.counter(name, tags);
+    }
+
+    public Counter counter(String name, String... tags) {
+        return INSTANCE.counter(name, tags);
+    }
+
+    public DistributionSummary summary(String name, Iterable<Tag> tags) {
+        return INSTANCE.summary(name, tags);
+    }
+
+    public DistributionSummary summary(String name, String... tags) {
+        return INSTANCE.summary(name, tags);
+    }
+
+    public Timer timer(String name, Iterable<Tag> tags) {
+        return INSTANCE.timer(name, tags);
+    }
+
+    public Timer timer(String name, String... tags) {
+        return INSTANCE.timer(name, tags);
+    }
+
+    public <T extends Number> T gauge(String name, Iterable<Tag> tags, T number) {
+        return INSTANCE.gauge(name, tags, number);
+    }
+
+    public <T extends Number> T gauge(String name, T number) {
+        return INSTANCE.gauge(name, number);
+    }
+
 }
