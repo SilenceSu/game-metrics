@@ -5,10 +5,12 @@
     <parent>
         <artifactId>game-metrics</artifactId>
         <groupId>com.sh_game</groupId>
-        <version>0.0.1</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>metrics-core</artifactId>
+    <version>0.0.2</version>
+
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
