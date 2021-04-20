@@ -7,7 +7,7 @@
     <groupId>com.sh_game</groupId>
     <artifactId>game-metrics</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>1.0</version>
     <modules>
         <module>metrics-core</module>
         <module>metrics-prometheus</module>

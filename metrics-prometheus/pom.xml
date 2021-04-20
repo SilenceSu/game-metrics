@@ -22,6 +22,7 @@
             <groupId>com.sh_game</groupId>
             <artifactId>metrics-core</artifactId>
             <version>0.0.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
