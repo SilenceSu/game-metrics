@@ -5,7 +5,7 @@
     <parent>
         <artifactId>game-metrics</artifactId>
         <groupId>com.sh_game</groupId>
-        <version>1.0</version>
+        <version>1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,12 +20,12 @@
         <dependency>
             <groupId>com.sh_game</groupId>
             <artifactId>metrics-core</artifactId>
-            <version>0.0.2</version>
+            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>com.sh_game</groupId>
             <artifactId>metrics-prometheus</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
     </dependencies>
 </project>
